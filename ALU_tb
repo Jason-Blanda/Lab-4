@@ -1,0 +1,38 @@
+module ALU_tb;
+
+reg [31:0] A;
+reg [31:0] B;
+reg Cin;
+reg [2:0] opcode;
+wire [3:0] St;
+wire [31:0] F;
+integer i;
+
+initial
+begin
+	$monitor("simtime=%g, A=%b, B=%b, Cin=%b, opcode=%b, St=%b, F=%b", $time, A, B, Cin, opcode, St, F);
+end
+	
+ALU dut (.A(A), .B(B), .Cin(Cin), .opcode(opcode), .St(St), .F(F));
+
+initial
+begin
+
+	A = 32'b0;
+	B = 32'b0;
+	opcode = 2'b0;
+	Cin = 2'b1;
+
+for (i=0;i<32;i=i+1)
+begin
+	A = A + 2'b1;
+	B = B + 2'b1;
+	opcode = opcode + 2'b1;
+	if(opcode == 2'b111)begin
+		opcode = 2'b0;
+	end
+	#10;
+end
+end
+
+endmodule
