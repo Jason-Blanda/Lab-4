@@ -1,0 +1,20 @@
+module mux_8to1 ( x0, x1, x2, x3, x4, x5, x6, x7, sel, out);
+	parameter N =32;
+	input [N-1:0] x0, x1, x2, x3, x4, x5, x6, x7;
+	input [2:0] sel;
+	output reg [N-1:0] out;
+  
+							  
+	always @ (x0 or x1 or x2 or x3 or x4 or x5 or x6 or x7) begin
+		case (sel)
+			3'b000 : out <= x0;
+			3'b001 : out <= x1;
+			3'b010 : out <= x2;
+			3'b011 : out <= x3;
+			3'b100 : out <= x4;
+			3'b101 : out <= x5;
+			3'b110 : out <= x6;
+			3'b111 : out <= x7;
+		endcase
+	end
+endmodule
