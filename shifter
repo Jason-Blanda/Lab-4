@@ -1,0 +1,12 @@
+module myshifter(a, b, left, right);
+
+input [31:0] a;
+input [4:0] b;
+
+output [31:0] left, right;
+
+assign left = a << b;
+assign right = a >> b;
+
+
+endmodule
